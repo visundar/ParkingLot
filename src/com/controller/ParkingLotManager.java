@@ -164,6 +164,11 @@ public class ParkingLotManager {
 
     public void getHistory()
     {
+        System.out.println("Slot No.     Registration No     Colour     StartDT     EndDT");
 
+        for(Parking p:parkedVehicles)
+        {
+            System.out.println(p.getParkingSlotNumber() + "         " + p.getVehicle().getRegistrationNum() + "       " + p.getVehicle().getColor()+"      "+p.getStartTimeStamp()+"       "+p.getEndTimeStamp());
+        }
     }
 }
