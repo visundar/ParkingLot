@@ -17,6 +17,10 @@ public class ParkingLotManager {
     private static ParkingLotManager parkingLotinstance = null;
     private boolean parkingLotInitialized = false;
 
+    public ParkingLotManager()
+    {
+        super();
+    }
     public static ParkingLotManager getParkingLotinstance() {
         if(parkingLotinstance == null)
             parkingLotinstance = new ParkingLotManager();
@@ -82,7 +86,7 @@ public class ParkingLotManager {
     {
 
     }
-    public void getRegistrationNumbersForColor(String color)
+    public String getRegistrationNumbersForColor(String color)
     {
         StringBuilder regNumConcat= new StringBuilder();
 
@@ -101,6 +105,7 @@ public class ParkingLotManager {
             System.out.println("Not found");
         else
             System.out.println(regNumConcat);
+        return regNumConcat.toString();
     }
 
     public void getSlotNumbersForColor(String color)
@@ -132,7 +137,7 @@ public class ParkingLotManager {
         {
             if(!ps.isAvailable()) {
                 Vehicle v =   ps.getParkedVehicleDetails();
-                if(v.getColor().toLowerCase().trim().replaceAll(" ","").equals(regNumber.toLowerCase().trim().replaceAll(" ","")))
+                if(v.getRegistrationNum().toLowerCase().trim().replaceAll(" ","").equals(regNumber.toLowerCase().trim().replaceAll(" ","")))
                     if(slotNumConcat.toString().isEmpty())
                         slotNumConcat.append(ps.getParkingSlotNumber()) ;
                     else
@@ -156,7 +161,7 @@ public class ParkingLotManager {
         }
     }
 
-    public void initParkingLot(int slotCount)
+    public int initParkingLot(int slotCount)
     {
         this.parkingSlots = new ArrayList<>(slotCount);
         // allocate parkingSlot Number and initialize
@@ -167,12 +172,17 @@ public class ParkingLotManager {
         //System.out.println("Allocated slot number: "+i);
         }
         parkingLotInitialized = true;
+        return slotCount;
         //this.printParkingLotStatus();
     }
 
+    public boolean isParkingLotInitialized()
+    {
+        return parkingLotInitialized;
+    }
     public void getHistory()
     {
-        System.out.println("Slot No.     Registration No     Colour     StartDT     EndDT");
+        System.out.println("Slot No.     Registration No     Colour          StartDT                     EndDT");
 
         for(Parking p:parkedVehicles)
         {

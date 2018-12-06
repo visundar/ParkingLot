@@ -23,13 +23,15 @@ public class CommandParser {
                 System.out.println("Invalid Number to init parking lot");
                 break;
                  }
-                 System.out.println("Initializing parking lot ");
+                // System.out.println("Initializing parking lot ");
                  parkingLotManager.initParkingLot(Integer.parseInt(commandTokens[1].trim()));
                  break;
             case "park":
                // System.out.println("Command received to park "+commandTokens[1].trim());
-                if((commandTokens.length <=2 && commandTokens[1] == null) ||commandTokens[1].trim().equals(""))
-                     System.out.println("No or invalid Vehicle details");
+                if(commandTokens.length <=1 ||  commandTokens[1] == null ||commandTokens[1].trim().equals("")) {
+                    System.out.println("No or invalid Vehicle details");
+                    break;
+                }
 
                 Vehicle v = new Car(commandTokens[1].trim(),commandTokens[2].trim());
                 parkingLotManager.park(v);
@@ -45,6 +47,10 @@ public class CommandParser {
                 parkingLotManager.leave(Integer.parseInt(commandTokens[1].trim()));
                 break;
             case "slot_numbers_for_cars_with_colour":
+                if(commandTokens.length <=1 ||  commandTokens[1] == null ||commandTokens[1].trim().equals("")) {
+                    System.out.println("No or invalid Vehicle details");
+                    break;
+                }
                 parkingLotManager.getSlotNumbersForColor(commandTokens[1].trim());
                 break;
             case "slot_number_for_registration_number":
