@@ -19,8 +19,8 @@ public class CommandParser {
         switch(commandTokens[0].toLowerCase())
         {
             case "create_parking_lot":
-                if((commandTokens.length >=2 && commandTokens[1] == null) ||commandTokens[1].trim().equals("") || !commandTokens[1].matches("^(?!0+$)\\d+$")) {
-                System.out.println("Invalid Number for parking lot space");
+                if(commandTokens.length <=1 || commandTokens[1] == null || commandTokens[1].trim().equals("") || !commandTokens[1].matches("^(?!0+$)\\d+$")) {
+                System.out.println("Invalid Number to init parking lot");
                 break;
                  }
                  System.out.println("Initializing parking lot ");
@@ -28,7 +28,7 @@ public class CommandParser {
                  break;
             case "park":
                // System.out.println("Command received to park "+commandTokens[1].trim());
-                if((commandTokens.length >=3 && commandTokens[1] == null) ||commandTokens[1].trim().equals(""))
+                if((commandTokens.length <=2 && commandTokens[1] == null) ||commandTokens[1].trim().equals(""))
                      System.out.println("No or invalid Vehicle details");
 
                 Vehicle v = new Car(commandTokens[1].trim(),commandTokens[2].trim());

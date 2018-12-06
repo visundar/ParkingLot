@@ -15,6 +15,7 @@ public class ParkingLotManager {
     private Queue<Vehicle> vehiclesWaiting = new PriorityQueue<Vehicle>();
     private List<Parking> parkedVehicles = new ArrayList<>();
     private static ParkingLotManager parkingLotinstance = null;
+    private boolean parkingLotInitialized = false;
 
     public static ParkingLotManager getParkingLotinstance() {
         if(parkingLotinstance == null)
@@ -37,6 +38,8 @@ public class ParkingLotManager {
 
     public void park(Vehicle v)
     {
+        if(!parkingLotInitialized)
+            return;
         if(isParkingFull()) {
             vehiclesWaiting.add(v);
             System.out.printf("Vehicle with reg number %s waiting for parking.. \n",v.getRegistrationNum());
@@ -53,6 +56,8 @@ public class ParkingLotManager {
 
     public void leave(int slotNumber)
     {
+        if(!parkingLotInitialized)
+            return;
         System.out.printf("Slot number %s is free \n", slotNumber);
 
         for(ParkingSlot ps:parkingSlots)
@@ -142,6 +147,8 @@ public class ParkingLotManager {
 
     public void printParkingLotStatus()
     {
+        if(!parkingLotInitialized)
+            return;
         System.out.println("Slot No.     Registration No     Colour");
         for(ParkingSlot ps:parkingSlots) {
             if(!ps.isAvailable())
@@ -159,6 +166,7 @@ public class ParkingLotManager {
         this.parkingSlots.add(parkingSlot);
         //System.out.println("Allocated slot number: "+i);
         }
+        parkingLotInitialized = true;
         //this.printParkingLotStatus();
     }
 
