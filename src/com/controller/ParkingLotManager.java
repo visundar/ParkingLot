@@ -23,11 +23,6 @@ public class ParkingLotManager {
     {
         super();
     }
-    public static ParkingLotManager getParkingLotinstance() {
-        if(parkingLotinstance == null)
-            parkingLotinstance = new ParkingLotManager();
-        return parkingLotinstance;
-    }
 
     public boolean isParkingFull()
     {
@@ -119,45 +114,40 @@ public class ParkingLotManager {
         return regNumConcat.toString();
     }
 
-    public void getSlotNumbersForColor(String color)
+    public ArrayList<Integer> getSlotNumbersForColor(String color)
     {
-        StringBuilder slotNumConcat= new StringBuilder("");
-
+        ArrayList<Integer> slotNumbersForColor = new ArrayList<>();
         for(Parking p: activeParking)
         {
             ParkingSlot ps = p.getParkingSlot();
             if(!ps.isAvailable() && p.getVehicle().getColor().toLowerCase().trim().equals(color.toLowerCase().trim()))
-                if(slotNumConcat.toString().isEmpty())
-                    slotNumConcat.append(ps.getParkingSlotNumber());
-                else
-                    slotNumConcat.append(", ").append(ps.getParkingSlotNumber());
+                slotNumbersForColor.add(ps.getParkingSlotNumber());
 
         }
-        if(slotNumConcat.toString().isEmpty())
+        if(slotNumbersForColor.size() == 0)
             System.out.println("Not found");
         else
-          System.out.println(slotNumConcat);
-    }
+            slotNumbersForColor.forEach(System.out::println);
 
-    public void getSlotNumberForReg(String regNumber)
+        return slotNumbersForColor;
+     }
+
+    public int getSlotNumberForReg(String regNumber)
     {
-        StringBuilder slotNumConcat= new StringBuilder("");
-
+        int slotNumberWithReg = 0;
         for(Parking p: activeParking)
         {
             if(!p.getParkingSlot().isAvailable()) {
                 Vehicle v =   p.getVehicle();
                 if(v.getRegistrationNum().toLowerCase().trim().replaceAll(" ","").equals(regNumber.toLowerCase().trim().replaceAll(" ","")))
-                    if(slotNumConcat.toString().isEmpty())
-                        slotNumConcat.append(p.getParkingSlot().getParkingSlotNumber()) ;
-                    else
-                        slotNumConcat.append(", ").append(p.getParkingSlot().getParkingSlotNumber());
+                   slotNumberWithReg = p.getParkingSlot().getParkingSlotNumber();
             }
         }
-        if(slotNumConcat.toString().isEmpty())
+        if(slotNumberWithReg == 0)
             System.out.println("Not found");
         else
-            System.out.println(slotNumConcat);
+            System.out.println(slotNumberWithReg);
+        return slotNumberWithReg;
     }
 
     public void printParkingLotStatus()
@@ -190,7 +180,7 @@ public class ParkingLotManager {
     {
         return parkingLotInitialized;
     }
-    public void getHistory()
+    public void printHistory()
     {
         System.out.println("Slot No.     Registration No     Colour          StartDT                     EndDT");
 
@@ -198,5 +188,10 @@ public class ParkingLotManager {
         {
             System.out.println(p.getParkingSlot().getParkingSlotNumber() + "         " + p.getVehicle().getRegistrationNum() + "       " + p.getVehicle().getColor()+"      "+p.getStartTimeStamp()+"       "+p.getEndTimeStamp());
         }
+    }
+
+    public List<Parking> getHistory()
+    {
+        return parkedVehiclesHistory;
     }
 }

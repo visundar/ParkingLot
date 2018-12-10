@@ -24,7 +24,7 @@ public class ParkingChallenge
             String inputCmd;
             while (true) {
                 inputCmd = commandScanner.nextLine();
-                CommandParser commandParserObj = CommandParser.getCommandParserInstance();
+                CommandParser commandParserObj =new CommandParser();
                 if (inputCmd.equalsIgnoreCase("exit")) {
                     System.out.println("Exiting ParkingLot Challenge");
                     break;

@@ -12,7 +12,7 @@ public class FileParser {
 
     public static void readFile(String fileName)
     {
-        CommandParser commandParser =  CommandParser.getCommandParserInstance();
+        CommandParser commandParser =  new CommandParser();
         try {
           List<String> commands= Files.lines(Paths.get(fileName))
                     .map(String::trim)

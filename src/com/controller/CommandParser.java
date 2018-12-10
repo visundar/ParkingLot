@@ -5,16 +5,19 @@ import com.model.Vehicle;
 
 public class CommandParser {
     private static CommandParser commandParserInstance = null;
+    ParkingLotManager parkingLotManager = new ParkingLotManager();
 
-    public static CommandParser getCommandParserInstance() {
-        if(commandParserInstance == null)
-            commandParserInstance = new CommandParser();
-        return commandParserInstance;
+   public CommandParser()
+   {
+       super();
+   }
+    public ParkingLotManager getParkingLotManager()
+    {
+        return parkingLotManager;
     }
-
     public void processCommand(String command)
     {
-        ParkingLotManager parkingLotManager = ParkingLotManager.getParkingLotinstance();
+
         String[] commandTokens = command.split(" ");
         switch(commandTokens[0].toLowerCase())
         {
@@ -60,7 +63,7 @@ public class CommandParser {
                 parkingLotManager.getRegistrationNumbersForColor(commandTokens[1].trim());
                 break;
             case "history":
-                parkingLotManager.getHistory();
+                parkingLotManager.printHistory();
                 break;
             case "exit":
                 System.out.println("Exiting program");
