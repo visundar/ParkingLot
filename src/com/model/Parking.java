@@ -7,15 +7,15 @@ public class Parking {
 
     private Vehicle vehicle;
     private Date startTimeStamp;
-    private int parkingSlotNumber;
+    ParkingSlot parkingSlot;
     private Date endTimeStamp;
     private Duration parkingduration;
 
-    public Parking(Vehicle v, Date startDT, int parkingSlotNum, Date endDT)
+    public Parking(Vehicle v, ParkingSlot parkingSlot, Date startDT, Date endDT)
     {
         this.vehicle = v;
         this.startTimeStamp = startDT;
-        this.parkingSlotNumber = parkingSlotNum;
+        this.parkingSlot = parkingSlot;
         this.endTimeStamp = endDT;
     }
     public Vehicle getVehicle()
@@ -26,12 +26,17 @@ public class Parking {
     {
         return this.startTimeStamp;
     }
-    public int getParkingSlotNumber()
+    public ParkingSlot getParkingSlot()
     {
-        return this.parkingSlotNumber;
+        return this.parkingSlot;
     }
     public Date getEndTimeStamp()
     {
         return this.endTimeStamp;
+    }
+
+    public void setEndTimeStamp(Date dt)
+    {
+        endTimeStamp = dt;
     }
 }

@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class ParkingSlot {
     private boolean available = true;
-    private Vehicle vehicle;
+    //private Vehicle vehicle;
     private Date startTimeStamp;
     private int parkingSlotNumber;
 
@@ -19,25 +19,16 @@ public class ParkingSlot {
         return startTimeStamp;
     }
 
-    public Vehicle getParkedVehicleDetails()
+    public int parkVehicle()
     {
-        return vehicle;
-    }
-
-    public int parkVehicle(Vehicle vehicle)
-    {
-        System.out.println("Allocated slot number " +this.getParkingSlotNumber());
+        //System.out.println("Allocated slot number " +this.getParkingSlotNumber());
         this.available = false;
-        this.vehicle = vehicle;
-        this.startTimeStamp = new Date();
         return parkingSlotNumber;
     }
 
     public void unparkVehicle()
     {
         this.available = true;
-        this.vehicle = null;
-        this.startTimeStamp = null;
     }
 
     public boolean isAvailable()

@@ -61,6 +61,7 @@ public class CommandParser {
                 break;
             case "history":
                 parkingLotManager.getHistory();
+                break;
             case "exit":
                 System.out.println("Exiting program");
                 break;

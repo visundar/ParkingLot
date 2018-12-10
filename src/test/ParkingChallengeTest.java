@@ -1,4 +1,3 @@
-package test.java;
 
 import com.controller.CommandParser;
 import com.controller.ParkingLotManager;
@@ -11,20 +10,19 @@ public class ParkingChallengeTest {
     @Test
     public void testNegativeParkingSlotSize() {
         CommandParser commandParserObj = CommandParser.getCommandParserInstance();
-        System.out.println("B4 init:" + ParkingLotManager.getParkingLotinstance().isParkingLotInitialized());
-
+       // System.out.println("B4 init:" + ParkingLotManager.getParkingLotinstance().isParkingLotInitialized());
         commandParserObj.processCommand("create_PARKING_LOT -1");
         Assert.assertTrue(!ParkingLotManager.getParkingLotinstance().isParkingLotInitialized());
-        System.out.println("B4 flag:" + ParkingLotManager.getParkingLotinstance().isParkingLotInitialized());
+        //System.out.println("B4 flag:" + ParkingLotManager.getParkingLotinstance().isParkingLotInitialized());
 
     }
 
     @Test
     public void testInvalidParkingLotSize() {
         CommandParser commandParserObj = CommandParser.getCommandParserInstance();
-        System.out.println("B4 flag:" + ParkingLotManager.getParkingLotinstance().isParkingLotInitialized());
+       // System.out.println("B4 flag:" + ParkingLotManager.getParkingLotinstance().isParkingLotInitialized());
         commandParserObj.processCommand("create_PARKING_LOT");
-        System.out.println("AFter flag: " + ParkingLotManager.getParkingLotinstance().isParkingLotInitialized());
+        //System.out.println("AFter flag: " + ParkingLotManager.getParkingLotinstance().isParkingLotInitialized());
         Assert.assertTrue(!ParkingLotManager.getParkingLotinstance().isParkingLotInitialized());
     }
 
