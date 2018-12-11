@@ -13,6 +13,7 @@ public class ParkingChallenge
         //reading commands via inputfile
        // System.out.println("Input args" + args);
        // System.out.println("Inside main program");
+        CommandParser commandParserObj =new CommandParser();
         if(args.length > 0)
         {
            FileParser.readFile(args[0]);
@@ -24,7 +25,6 @@ public class ParkingChallenge
             String inputCmd;
             while (true) {
                 inputCmd = commandScanner.nextLine();
-                CommandParser commandParserObj =new CommandParser();
                 if (inputCmd.equalsIgnoreCase("exit")) {
                     System.out.println("Exiting ParkingLot Challenge");
                     break;

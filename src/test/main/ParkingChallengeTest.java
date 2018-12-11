@@ -84,7 +84,7 @@ public class ParkingChallengeTest {
     }
 
     @Test
-    public void testEndTimeStamp()
+    public void testHistory()
     {
         CommandParser commandParserObj = new CommandParser();
         commandParserObj.processCommand("create_PARKING_LOT 2");

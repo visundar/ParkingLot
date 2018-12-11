@@ -17,11 +17,12 @@ public class ParkingLotManager {
     private List<Parking> parkedVehiclesHistory = new ArrayList<>();
 
     private static ParkingLotManager parkingLotinstance = null;
-    private boolean parkingLotInitialized = false;
+    private Boolean parkingLotInitialized;
 
     public ParkingLotManager()
     {
         super();
+        //this.parkingLotInitialized = false;
     }
 
     public boolean isParkingFull()
@@ -34,12 +35,15 @@ public class ParkingLotManager {
                 break;
             }
         }
+        //System.out.println("Parkingfull value : "+ parkingFull);
         return parkingFull;
     }
 
     public void park(Vehicle v)
     {
-        if(!parkingLotInitialized)
+        //System.out.println("Inside park function");
+       // System.out.println("ParkingLotInit :"+parkingLotInitialized);
+        if(parkingLotInitialized == null)
             return;
         if(isParkingFull()) {
             vehiclesWaiting.add(v);
@@ -169,11 +173,10 @@ public class ParkingLotManager {
         {
         ParkingSlot parkingSlot= new ParkingSlot(i);
         this.parkingSlots.add(parkingSlot);
-        //System.out.println("Allocated slot number: "+i);
         }
-        parkingLotInitialized = true;
+        this.parkingLotInitialized = new Boolean(true);
+       // System.out.println("ParkingLotInitialized value:"+parkingLotInitialized);
         return slotCount;
-        //this.printParkingLotStatus();
     }
 
     public boolean isParkingLotInitialized()
