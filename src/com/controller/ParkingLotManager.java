@@ -158,7 +158,8 @@ public class ParkingLotManager {
     {
         if(!parkingLotInitialized)
             return;
-        System.out.println("Slot No.     Registration No     Colour");
+        if(activeParking.size() >0)
+             System.out.println("Slot No.     Registration No     Colour");
         for(Parking p: activeParking) {
             if(!p.getParkingSlot().isAvailable())
             System.out.println(p.getParkingSlot().getParkingSlotNumber() + "      " + p.getVehicle().getRegistrationNum() + "       " + p.getVehicle().getColor());
@@ -179,7 +180,7 @@ public class ParkingLotManager {
         return slotCount;
     }
 
-    public boolean isParkingLotInitialized()
+    public Boolean isParkingLotInitialized()
     {
         return parkingLotInitialized;
     }

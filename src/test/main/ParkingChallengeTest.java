@@ -16,7 +16,7 @@ public class ParkingChallengeTest {
     public void testNegativeParkingSlotSize() {
         CommandParser commandParserObj = new CommandParser();
         commandParserObj.processCommand("create_PARKING_LOT -1");
-        Assert.assertTrue(!commandParserObj.getParkingLotManager().isParkingLotInitialized());
+        Assert.assertTrue(commandParserObj.getParkingLotManager().isParkingLotInitialized() == null);
     }
 
     @Test
@@ -25,7 +25,7 @@ public class ParkingChallengeTest {
        // System.out.println("B4 flag:" + commandParserObj.getParkingLotManager().isParkingLotInitialized());
         commandParserObj.processCommand("create_PARKING_LOT");
         //System.out.println("AFter flag: " + commandParserObj.getParkingLotManager().isParkingLotInitialized());
-        Assert.assertTrue(!commandParserObj.getParkingLotManager().isParkingLotInitialized());
+        Assert.assertTrue(commandParserObj.getParkingLotManager().isParkingLotInitialized() == null);
     }
 
     @Test
